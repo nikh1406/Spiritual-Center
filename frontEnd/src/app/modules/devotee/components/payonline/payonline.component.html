@@ -1,0 +1,58 @@
+
+
+
+<div class="container mt-5 justify-content-center d-flex">
+    <div class="card shadow-lg" style="width: 30rem;">
+        <div class="card-header">
+            <h4 class="card-title text-center">Donation Form</h4>
+        </div>
+        <form [formGroup]="valueForm" style="padding: 25px;" class="needs-validation" novalidate>
+            <div class="mb-3">
+                <label for="month" class="form-label">Month</label>
+                <select class="form-select" aria-label="Select Month" id="month" formControlName="month"
+                    [ngClass]="{'is-invalid': monthController.invalid && (monthController.touched || monthController.dirty)}">
+                    <option selected disabled value="">Select Month</option>
+                    <ng-container *ngFor="let item of [1,2,3,4,5,6,7,8,9,10,11,12]">
+                        <option [value]="item">{{item}}</option>
+                    </ng-container>
+                </select>
+                <div *ngIf="monthController.invalid && (monthController.touched || monthController.dirty)">
+                    <small id="monthErr" class="form-text text-danger"
+                        *ngIf="monthController.hasError('required')">Month is required</small>
+                </div>
+            </div>
+            <div class="mb-3">
+                <label for="year" class="form-label">Year</label>
+                <select class="form-select" aria-label="Select Year" id="year" formControlName="year"
+                    [ngClass]="{'is-invalid': yearController.invalid && (yearController.touched || yearController.dirty)}">
+                    <option selected disabled value="">Select Year</option>
+                    <option value=2020>2020</option>
+                    <option value=2021>2021</option>
+                    <option value=2022>2022</option>
+                    <option value=2023>2023</option>
+                    <option value=2024>2024</option>
+                </select>
+                <div *ngIf="yearController.invalid && (yearController.touched || yearController.dirty)">
+                    <small id="yearErr" class="form-text text-danger" *ngIf="yearController.hasError('required')">Year
+                        is required</small>
+                </div>
+            </div>
+            <div class="mb-3">
+                <label for="amount" class="form-label">Amount</label>
+                <input type="number" class="form-control" id="amount" placeholder="" formControlName="amount"
+                    [ngClass]="{'is-invalid': (amountController.invalid || (amountController.value < 100 )) && (amountController.touched || amountController.dirty)}">
+                <small id="amountErr" class="form-text text-danger"
+                    *ngIf="!amountController.hasError('required') && (amountController.value < 100 && (amountController.touched || amountController.dirty))">Amount
+                    should not be less than 100</small>
+                <div *ngIf="amountController.invalid && (amountController.touched || amountController.dirty)">
+                    <small id="amountErr" class="form-text text-danger"
+                        *ngIf="amountController.hasError('required')">Amount is required</small>
+                </div>
+            </div>
+            <div class="mb-3 text-center">
+                <button id="submit" type="button" class="btn btn-primary" (click)="paymentDetail()">Make
+                    Donation</button>
+            </div>
+        </form>
+    </div>
+</div>

@@ -1,0 +1,118 @@
+<div class="d-flex justify-content-center mt-5">
+    <form [formGroup]="paymentCategoryFrom">
+        <p class="text-center"><b class="fs-5">Donation Menu</b></p>
+        <select class="form-select mb-3" style="width: fit-content;cursor: pointer;" id="donationMenu"
+            formControlName="paymentCategory">
+            <option  value="allpayment">All Payments</option>
+            <option value="unpaid">Unpaid Donation</option>
+        </select>
+    </form>
+
+
+</div>
+<div class="container ">
+    <div  id="allPaymentList" *ngIf="paymentCategoryController.value == 'allpayment'">
+        <div class="overflow-x-auto mt-5 mb-3 shadow-lg">
+            <table class="table table-bordered  text-center ">
+                <thead>
+                    <tr>
+                        <th colspan="4">
+                            <ng-container>
+                                <h4>All Payments</h4>
+                            </ng-container>
+                        </th>
+                    </tr>
+                    <tr>
+                        <th scope="col">DevoteeId </th>
+                        <th scope="col">Month</th>
+                        <th scope="col">Year</th>
+                        <th scope="col">Total Amount</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <ng-container
+                        *ngFor="let item of userPaymentList | paginate: { itemsPerPage: 5, currentPage: p };let i = index">
+    
+                        <ng-container *ngIf="item.amount>=10000;else lessthen">
+                            <tr [id]="item.devoteeId">
+                                <th [ngClass]="item.amount >= 10000 ? 'bg-green' : ''" scope="row">{{item.devoteeId}}</th>
+                                <td [ngClass]="item.amount >= 10000 ? 'bg-green' : ''">{{item.month}}</td>
+                                <td [ngClass]="item.amount >= 10000 ? 'bg-green' : ''">{{item.year}}</td>
+                                <td [ngClass]="item.amount >= 10000 ? 'bg-green' : ''">{{item.amount}}</td>
+                            </tr>
+                        </ng-container>
+                        <ng-template #lessthen>
+                            <tr [id]="item.devoteeId">
+                                <th scope="row">{{item.devoteeId}}</th>
+                                <td>{{item.month}}</td>
+                                <td>{{item.year}}</td>
+                                <td>{{item.amount}}</td>
+                            </tr>
+    
+                        </ng-template>
+    
+    
+                    </ng-container>
+                </tbody>
+    
+            </table>
+            <div class="d-flex justify-content-center">
+                <pagination-controls (pageChange)="p = $event" class="float-right"></pagination-controls>
+            </div>
+        </div>
+        
+    </div>
+
+
+    <div id="allUnpaidList"  *ngIf="paymentCategoryController.value == 'unpaid'">
+        <div class="overflow-x-auto mb-3 mt-5 shadow-lg">
+
+            <table class="table table-bordered  text-center ">
+                <thead>
+                    <tr>
+                        <th colspan="15">
+                            <h4>Unpaid Donation</h4>
+                        </th>
+                    </tr>
+                    <tr>
+                        <th scope="col">DevoteeId </th>
+                        <th scope="col">First Name</th>
+                        <th scope="col">Middle Name</th>
+                        <th scope="col">Last Name</th>
+                        <th scope="col">Flat Number</th>
+                        <th scope="col">Area</th>
+                        <th scope="col">City</th>
+                        <th scope="col">State</th>
+                        <th scope="col">Pincode</th>
+                        <th scope="col">EmailId</th>
+                        <th scope="col">Initiation Date</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr [id]="item.devoteeId"
+                        *ngFor="let item of UserList | paginate: { itemsPerPage: 10, currentPage: p }">
+                        <th scope="row">{{item.devoteeId}}</th>
+                        <td>{{item.firstName}}</td>
+                        <td>{{item.middleName}}</td>
+                        <td>{{item.lastName}}</td>
+                        <td>{{item.flatNumber}}</td>
+                        <td>{{item.area}}</td>
+                        <td>{{item.city}}</td>
+                        <td>{{item.state}}</td>
+                        <td>{{item.pincode}}</td>
+                        <td>{{item.emailid}}</td>
+
+                        <!-- <td>{{item.initiationDate | date:"dd-MM-YYYY"}}</td> -->
+                        <td>{{item.initiationDate}}</td>
+
+                    </tr>
+
+                </tbody>
+            </table>
+        </div>
+        <div class="d-flex justify-content-center">
+            <pagination-controls (pageChange)="p = $event" class="float-right"></pagination-controls>
+        </div>
+    </div>
+</div>
+

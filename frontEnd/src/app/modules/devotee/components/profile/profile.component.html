@@ -1,0 +1,51 @@
+<div class="container mt-5 " id="body">
+  <div class="row">
+    <div class="col-md-3 col-sm-5">
+      <div class="card">
+        <div class="card-body">
+          <div class="d-flex justify-content-center align-items-center container">
+            
+            <div *ngIf="userData.length != 0">
+              <ng-container *ngIf="userData[0].photo == 'model.png';else ShowPhoto">
+                <img src="../../../../../assets/download.png" alt="profile" class="img-fluid rounded-circle mb-3 text-center shadow-lg"  alt="img">
+              </ng-container>
+              <ng-template #ShowPhoto>
+                <img [src]="photoUrl" alt="profile" class="img-fluid rounded-circle text-center shadow-lg"  >
+              </ng-template>
+              
+            </div>
+
+          </div>
+
+          <div *ngIf="userData.length != 0">
+            <h5 class="card-title text-center">Id : {{userData[0].devoteeId }}</h5>
+          </div>
+
+        
+        </div>
+      </div>
+    </div>
+    <div class="col-md-9 col-sm-12">
+      <div class="card">
+        <div class="card-body">
+          <ng-container *ngIf="userData.length == 0;else profile">
+            <strong id="noContent">No Content Found!</strong>
+          </ng-container>
+          <ng-template #profile>
+            <ul class="list-group list-group-flush">
+
+              <li [id]="'fullname'" [value]="userData[0].firstName"
+                class="list-group-item"><strong>Full Name : </strong>{{userData[0].firstName}}
+                {{userData[0].middleName}} {{userData[0].lastName}}</li>
+
+              <li id="area" class="list-group-item"><strong>Area : </strong>{{userData[0].area}}</li>
+              <li id="city" class="list-group-item"><strong>City : </strong>{{userData[0].city}}</li>
+              <li id="pincode" class="list-group-item"><strong>Pincode : </strong>{{userData[0].pincode}}</li>
+              <li id="email" class="list-group-item"><strong>EmailID : </strong>{{userData[0].emailid}}</li>
+            </ul>
+          </ng-template>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

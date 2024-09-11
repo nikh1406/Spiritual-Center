@@ -1,0 +1,197 @@
+<div class="container d-flex justify-content-center mt-5 mb-5">
+    <form [formGroup]="createuserForm">
+        
+        <div class="card card-header text-center mb-3">
+            <h6 class="card-title" style="font-size: 1.6rem;">Create User</h6>
+        </div>
+        <div class="row">
+            <div class="col-12 col-md-4">
+                <div class="mb-3">
+                    <label for="firstName" class="form-label">First Name</label>
+                    <input type="text" class="form-control" id="firstName" placeholder=""
+                        formControlName="firstName"
+                        [ngClass]="{'is-invalid': firstnameController.invalid && (firstnameController.touched || firstnameController.dirty)}">
+                    <div
+                        *ngIf="firstnameController.invalid && (firstnameController.touched || firstnameController.dirty)">
+                        <small id="firstNameErr" class="form-text text-danger"
+                            *ngIf="(firstnameController.hasError('required'))">First Name is required</small>
+                        <small id="firstNameErr" class="form-text text-danger"
+                            *ngIf="(firstnameController.hasError('minlength'))">For First Name minimum 3 char
+                            required</small>
+                        <small id="firstNameErr" class="form-text text-danger"
+                            *ngIf="(firstnameController.hasError('maxlength') )">For First Name maximum 15 char
+                            allowed</small>
+                    </div>
+                </div>
+            </div>
+            <div class="col-12 col-md-4">
+                <div class="mb-3">
+                    <label for="middleName" class="form-label">Middle Name</label>
+                    <input type="text" class="form-control" id="middleName" placeholder=""
+                        formControlName="middleName"
+                        [ngClass]="{'is-invalid': middleNameController.invalid && (middleNameController.touched || middleNameController.dirty)}">
+                    <div
+                        *ngIf="middleNameController.invalid && (middleNameController.touched || middleNameController.dirty)">
+                        <small id="middleNameErr" class="form-text text-danger"
+                            *ngIf="(middleNameController.hasError('required') )">Middle Name is required</small>
+                        <small id="middleNameErr" class="form-text text-danger"
+                            *ngIf="(middleNameController.hasError('minlength'))">For Middle Name minimum 3 char
+                            required</small>
+                        <small id="middleNameErr" class="form-text text-danger"
+                            *ngIf="(middleNameController.hasError('maxlength') )">For Middle Name maximum 15
+                            char allowed</small>
+                    </div>
+                </div>
+            </div>
+            <div class="col-12 col-md-4">
+                <div class="mb-3">
+                    <label for="lastName" class="form-label">Last Name</label>
+                    <input type="text" class="form-control" formControlName="lastName" id="lastName"
+                        [ngClass]="{'is-invalid': lastNameController.invalid && (lastNameController.touched || lastNameController.dirty)}"
+                        placeholder="">
+
+                    <div
+                        *ngIf="lastNameController.invalid && (lastNameController.touched || lastNameController.dirty)">
+                        <small id="lastNameErr" class="form-text text-danger"
+                            *ngIf="(lastNameController.hasError('required') )">Last Name is required</small>
+                        <small id="lastNameErr" class="form-text text-danger"
+                            *ngIf="(lastNameController.hasError('minlength'))">For Last Name minimum 3 char
+                            required</small>
+                        <small id="lastNameErr" class="form-text text-danger"
+                            *ngIf="(lastNameController.hasError('maxlength'))">For Last Name maximum 15 char
+                            allowed</small>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-12 col-md-6">
+                <div class="mb-3">
+                    <label for="emailId" class="form-label">EmailId</label>
+                    <input type="text" class="form-control" formControlName="emailid" id="emailId"
+                        [ngClass]="{'is-invalid': emailidController.invalid && (emailidController.touched || emailidController.dirty)}"
+                        placeholder="">
+
+                    <div
+                        *ngIf="emailidController.invalid && (emailidController.touched || emailidController.dirty)">
+                        <small id="emailIdErr" class="form-text text-danger"
+                            *ngIf="(emailidController.hasError('required') )">Email is required</small>
+                        <small id="emailIdErr" class="form-text text-danger"
+                            *ngIf="(emailidController.hasError('email') )">Pleae enter valid email</small>
+                    </div>
+                </div>
+            </div>
+            <div class="col-12 col-md-6">
+                <div class="mb-3">
+                    <label for="initiationDate" class="form-label">Initiation Date</label>
+                    <input type="date" class="form-control" id="initiationDate"
+                        [ngClass]="{'is-invalid': initiationDateController.invalid && (initiationDateController.touched || initiationDateController.dirty)}"
+                        formControlName="initiationDate" [max]="currentDate | date : 'yyyy-MM-dd'">
+                    <div
+                        *ngIf="initiationDateController.invalid && (initiationDateController.touched || initiationDateController.dirty)">
+                        <small id="initiationDateErr" class="form-text text-danger"
+                            *ngIf="(initiationDateController.hasError('required') )">Initiation
+                            Date is required</small>
+                        <small id="initiationDateErr" class="form-text text-danger"
+                            *ngIf="initiationDateController.value != '' && (initiationDateController.hasError('invalidDate') )">Initiation
+                            Date should be not be less than of last 2 month</small>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-12 col-md-4">
+                <div class="mb-3">
+                    <label for="flatNumber" class="form-label">Flat Number</label>
+                    <input type="number" formControlName="flatNumber" class="form-control" id="flatNumber"
+                        [ngClass]="{'is-invalid': flatNumberController.invalid && (flatNumberController.touched || flatNumberController.dirty)}"
+                        placeholder="">
+                    <small id="flatNumberErr" class="form-text text-danger"
+                        *ngIf="(flatNumberController.hasError('required') && (flatNumberController.touched || flatNumberController.dirty))">Flat
+                        Number is required</small>
+                </div>
+            </div>
+            <div class="col-12 col-md-4">
+                <div class="mb-3">
+                    <label for="area" class="form-label">Area</label>
+                    <input type="text" class="form-control" formControlName="area" id="area" placeholder=""
+                        [ngClass]="{'is-invalid': areaController.invalid && (areaController.touched || areaController.dirty)}">
+                    <small id="areaErr" class="form-text text-danger"
+                        *ngIf="(areaController.hasError('required') && (areaController.touched || areaController.dirty))">Area
+                        is required</small>
+                </div>
+            </div>
+            <div class="col-12 col-md-4">
+                <div class="mb-3">
+                    <label for="city" class="form-label">City</label>
+                    <input type="text" class="form-control" formControlName="city" id="city" placeholder=""
+                        [ngClass]="{'is-invalid': cityController.invalid && (cityController.touched || cityController.dirty)}">
+                    <small id="cityErr" class="form-text text-danger"
+                        *ngIf="(cityController.hasError('required') && (cityController.touched || cityController.dirty))">City
+                        is required</small>
+                </div>
+            </div>
+            <div class="col-12 col-md-4">
+                <div class="mb-3">
+                    <label for="state" class="form-label">State</label>
+                    <input type="text" class="form-control" id="state" formControlName="state" placeholder=""
+                        [ngClass]="{'is-invalid': stateController.invalid && (stateController.touched || stateController.dirty)}">
+                    <small id="stateErr" class="form-text text-danger"
+                        *ngIf="(stateController.hasError('required') && (stateController.touched || stateController.dirty))">State
+                        is required</small>
+                </div>
+            </div>
+            <div class="col-12 col-md-4">
+                <div class="mb-3">
+                    <label for="pinCode" class="form-label">Pincode</label>
+                    <input type="text" class="form-control" id="pinCode" placeholder=""
+                        [ngClass]="{'is-invalid': pincodeeController.invalid && (pincodeeController.touched || pincodeeController.dirty)}"
+                        formControlName="pincode">
+
+                    <ng-container
+                        *ngIf="pincodeeController.invalid && (pincodeeController.touched || pincodeeController.dirty)">
+                        <small id="pinCodeErr" class="form-text text-danger"
+                            *ngIf="(pincodeeController.hasError('required'))">Pincode is required</small>
+
+                        <small id="pinCodeErr" class="form-text text-danger"
+                            *ngIf="(pincodeeController.value != '' && (pincodeeController.hasError('invalidPincode')) )">Pincode
+                            should not contain non digit characters</small>
+
+                        <small id="pinCodeErr" class="form-text text-danger"
+                            *ngIf="  (!pincodeeController.hasError('invalidPincode') && pincodeeController.hasError('maxlength'))">For
+                            Pincode maximum 6 digit allowed</small>
+                    </ng-container>
+                </div>
+            </div>
+            <div class="col-12 col-md-4">
+                <div class="mb-3">
+                    <label for="imageUrl" class="form-label">Photo</label>
+                    <input type="file" class="form-control" id="imageUrl" formControlName="photo" (change)="onFIleSelected($event)"
+                        [ngClass]="{'is-invalid': photoController.invalid && (photoController.touched || photoController.dirty)}">
+                    <small id="imageUrlErr" class="form-text text-danger"
+                        *ngIf="(photoController.hasError('required') && (photoController.touched || photoController.dirty))">Required</small>
+                </div>
+            </div>
+        </div>
+        
+
+
+        <div class="mb-3" style="margin: 0px 30px;">
+            <div class="row justify-content-center ">
+                <button id="submit" type="button" class="btn btn-primary " (click)="usercreate()">Create
+                    User</button>
+            </div>
+        </div>
+
+    </form>
+    <!-- <div class="card" style="min-width: fit-content; width: 30vw;">
+        <div class="card-header text-center">
+            <h6 class="card-title" style="font-size: 1.6rem;">Create User</h6>
+        </div>
+        <div class="card-body">
+            
+        </div>
+    </div> -->
+</div>

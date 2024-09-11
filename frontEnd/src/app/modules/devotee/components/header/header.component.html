@@ -1,0 +1,50 @@
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark shadow-lg sticky-top">
+    <div class="container">
+      <div class="dropdown px-3">
+        <a class="d-flex align-items-center text-white text-decoration-none dropdown-toggle"  data-bs-toggle="dropdown" aria-expanded="false" style="cursor: pointer;">
+          <ng-container *ngIf="username != '';else other">
+            <ng-container *ngIf="img == backend.imgUrl+'model.png';else ShowPhoto">
+              <img src="../../../../../assets/download.png" alt="" width="32" height="32" class="rounded-circle me-2" alt="img">
+            </ng-container>
+            <ng-template #ShowPhoto>
+              <img [src]="img" alt="" width="32" height="32" class="rounded-circle me-2" alt="img">
+            </ng-template>
+            <strong>{{username | titlecase}} </strong> 
+          </ng-container>
+          <ng-template #other>
+            <h5 >Spiritual Center</h5>
+          </ng-template>
+        </a>
+        <ul class="dropdown-menu dropdown-menu-dark text-small shadow" aria-labelledby="dropdownUser1">
+          <li><a class="dropdown-item" routerLink="/devotee/profile" routerLinkActive="active">Profile</a></li>
+          <li><a class="dropdown-item" routerLink="/devotee/mypayments" routerLinkActive="active">Home</a></li>
+          <li><hr class="dropdown-divider"></li>
+          <li><a class="dropdown-item" [routerLink]="'/login'" (click)="logout($event)">Sign out</a></li>
+        </ul>
+      </div>
+     
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContentDevotee" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarSupportedContentDevotee">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+          <li class="nav-item">
+            <a class="nav-link active" aria-current="page" type="button" id="myPaymentsBtn" routerLink="/devotee/mypayments" routerLinkActive="active">My Payments</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" type="button"  type="button" id="profileBtn" routerLink="/devotee/profile" routerLinkActive="active">Profile</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" type="button"  type="button" id="payOnlineBtn" routerLink="/devotee/payonline" routerLinkActive="active">Pay Online</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" routerLink="/devotee/chat" type="button" routerLinkActive="active">Group Chat</a>
+          </li>
+          
+        </ul>
+        <form class="d-flex">
+          <button class="btn btn-outline-danger" type="submit" id="logoutBtn" routerLink="/login" (click)="logout($event)">logout</button>
+        </form>
+      </div>
+    </div>
+  </nav>

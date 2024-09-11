@@ -1,0 +1,127 @@
+<!-- <div class="container mt-5">
+    <div class="card shadow-lg" style="max-width: 30rem; margin: 0 auto;">
+        <div class="card-header text-center">
+            <h6 class="card-title" style="font-size: 1.6rem;">Login</h6>
+        </div>
+        
+        <div class="card-body">
+            <form [formGroup]="loginForm" class="needs-validation" novalidate>
+                <div class="mb-3">
+                    <label for="role" class="form-label">Role</label>
+                    <select id="role" class="form-select" aria-label=".form-select-lg example" [ngClass]="{'is-invalid': roleController.invalid && (roleController.touched || roleController.dirty)}"
+                        formControlName="role">
+                        <option value="" selected disabled>Select Role</option>
+                        <option value="Admin">Admin</option>
+                        <option value="Devotee">Devotee</option>
+                    </select>
+                    <div *ngIf="roleController.invalid && (roleController.touched || roleController.dirty)">
+                        <small id="roleErr" class="form-text text-danger"
+                            *ngIf="roleController.hasError('required')">Role is required</small>
+                    </div>
+                </div>
+                <div class="mb-3">
+                    <label for="username" class="form-label">Username</label>
+                    <input type="text" class="form-control" id="username" placeholder="2024-Ni-Sa-5" [ngClass]="{'is-invalid': usernameController.invalid && (usernameController.touched || usernameController.dirty)}"
+                        formControlName="username">
+                    <div *ngIf="usernameController.invalid && (usernameController.touched || usernameController.dirty)">
+                        <small id="usernameErr" class="form-text text-danger"
+                            *ngIf="usernameController.hasError('required')">Username is required</small>
+                    </div>
+                </div>
+                <div class="mb-3">
+                    <label for="password" class="form-label">Password</label>
+                    <input type="password" autocomplete="" class="form-control" id="password" formControlName="password" [ngClass]="{'is-invalid': passwordController.invalid && (passwordController.touched || passwordController.dirty)}">
+                    <div *ngIf="passwordController.invalid && (passwordController.touched || passwordController.dirty)">
+                        <small id="passwordErr" class="form-text text-danger"
+                            *ngIf="passwordController.hasError('required')">Password is required</small>
+                    </div>
+                </div>
+                <ng-container *ngIf="roleController.value == 'Devotee' && otpView">
+                    <div class="mb-3">
+                        <label for="otp" class="form-label">OTP</label>
+                        <input type="text" class="form-control" id="otp" formControlName="otp" placeholder="000000" [ngClass]="{'is-invalid': otpController.invalid && (otpController.touched || otpController.dirty)}">
+                        <div *ngIf="otpController.invalid && (otpController.touched || otpController.dirty)">
+                            <small id="otpErr" class="form-text text-danger"
+                                *ngIf="otpController.hasError('required')">OTP is required</small>
+                        </div>
+                    </div>
+                </ng-container>
+
+                <div class="mb-3">
+                    <small *ngIf="(!isvalidCredential)" id="authInfo" class="form-text text-danger">Invalid
+                        user/password/role</small>
+                </div>
+                
+                <div class="mb-3">
+                    <div class="text-center">
+                        <button id="submit" type="button" class="btn btn-primary" (click)="login()">Submit Credential</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+ -->
+<div class="container mt-5" style="width: 500px;">
+    <form [formGroup]="loginForm" class="needs-validation" novalidate>
+        <div class="imgcontainer">
+            <img src="../../../assets/download.png" alt="Avatar" class="avatar">
+        </div>
+        <div class="mb-3">
+            <label for="role" class="form-label"><b>Role</b></label>
+            <select id="role" class="form-select" aria-label=".form-select-lg example"
+                [ngClass]="{'is-invalid': roleController.invalid && (roleController.touched || roleController.dirty)}"
+                formControlName="role">
+                <option value="" selected disabled>Select Role</option>
+                <option value="Admin">Admin</option>
+                <option value="Devotee">Devotee</option>
+            </select>
+            <div *ngIf="roleController.invalid && (roleController.touched || roleController.dirty)">
+                <small id="roleErr" class="form-text text-danger" *ngIf="roleController.hasError('required')">Role
+                    is required</small>
+            </div>
+        </div>
+        <div class="mb-3">
+            <label for="username" class="form-label"><b>Username</b></label>
+            <input type="text" class="form-control" id="username" placeholder="2024-Ni-Sa-5"
+                [ngClass]="{'is-invalid': usernameController.invalid && (usernameController.touched || usernameController.dirty)}"
+                formControlName="username">
+            <div *ngIf="usernameController.invalid && (usernameController.touched || usernameController.dirty)">
+                <small id="usernameErr" class="form-text text-danger"
+                    *ngIf="usernameController.hasError('required')">Username is required</small>
+            </div>
+        </div>
+        <div class="mb-3">
+            <label for="password" class="form-label"><b>Password</b></label>
+            <input type="password" autocomplete="" class="form-control" id="password" formControlName="password"
+                [ngClass]="{'is-invalid': passwordController.invalid && (passwordController.touched || passwordController.dirty)}">
+            <div *ngIf="passwordController.invalid && (passwordController.touched || passwordController.dirty)">
+                <small id="passwordErr" class="form-text text-danger"
+                    *ngIf="passwordController.hasError('required')">Password is required</small>
+            </div>
+        </div>
+        <ng-container *ngIf="roleController.value == 'Devotee' && otpView">
+            <div class="mb-3">
+                <label for="otp" class="form-label"><b>OTP</b></label>
+                <input type="text" class="form-control" id="otp" formControlName="otp" placeholder="000000"
+                    [ngClass]="{'is-invalid': otpController.invalid && (otpController.touched || otpController.dirty)}">
+                <div *ngIf="otpController.invalid && (otpController.touched || otpController.dirty)">
+                    <small id="otpErr" class="form-text text-danger" *ngIf="otpController.hasError('required')">OTP
+                        is required</small>
+                </div>
+            </div>
+        </ng-container>
+
+        <div class="mb-3">
+            <small *ngIf="(!isvalidCredential)" id="authInfo" class="form-text text-danger">Invalid
+                user/password/role</small>
+        </div>
+
+        <div class="mb-3">
+            <div class="text-center">
+                <button id="submit" type="button" class="btn btn-primary" (click)="login()">Submit
+                    Credential</button>
+            </div>
+        </div>
+    </form>
+</div>

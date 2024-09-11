@@ -1,0 +1,36 @@
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark shadow-lg sticky-top">
+    <div class="container">
+      <a class="navbar-brand" routerLink="/admin/userlist" routerLinkActive="active">
+        <ng-container *ngIf="username != '';else other">
+          <img src="../../../assets/download.png" alt="" width="32" height="32" class="rounded-circle me-2">
+          <strong>{{username | titlecase}} </strong> 
+        </ng-container>
+        <ng-template #other>
+          <h5 >Spiritual Center</h5>
+        </ng-template>
+      </a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+          <li class="nav-item">
+            <a class="nav-link active" aria-current="page" type="button" id="userlistBtn" routerLink="/admin/userlist" routerLinkActive="active">User List</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link active" aria-current="page" type="button" id="userCreateBtn" routerLink="/admin/createuser" routerLinkActive="active">User Create</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" routerLink="/admin/donations" type="button" id="donationBtn" routerLinkActive="active">Donation</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" routerLink="/admin/chat" type="button" id="groupChatBTN" routerLinkActive="active" >Chat</a>
+          </li>
+          
+        </ul>
+        <form class="d-flex">
+          <button class="btn btn-danger" type="submit" id="logoutBtn" routerLink="/login" (click)="logout($event)">logout</button>
+        </form>
+      </div>
+    </div>
+  </nav>

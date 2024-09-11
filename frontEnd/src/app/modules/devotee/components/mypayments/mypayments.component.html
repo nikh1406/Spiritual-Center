@@ -1,0 +1,49 @@
+
+
+<div class="container">
+
+  <table class="table table-bordered mt-5 text-center shadow-lg" id="allMyPaymentList">
+    <thead>
+      <tr>
+        <th colspan="4">
+          <h4>List of My payment</h4>
+        </th>
+      </tr>
+      <tr>
+        <th scope="col">DevoteeId </th>
+        <th scope="col">Month</th>
+        <th scope="col">Year</th>
+        <th scope="col">Total Amount</th>
+      </tr>
+    </thead>
+    <tbody>
+      <ng-container *ngFor="let item of userPaymentList | paginate: { itemsPerPage: 5, currentPage: p };let i = index">
+
+        <ng-container *ngIf="item.amount>=10000;else other">
+          <tr [id]="'payment-'+i" class="bg-green">
+            <td class="bg-green">{{item.devoteeId}}</td>
+            <td class="bg-green">{{item.month}}</td>
+            <td class="bg-green">{{item.year}}</td>
+            <td class="bg-green">{{item.amount}}</td>
+          </tr>
+        </ng-container>
+        <ng-template #other>
+          <tr [id]="'payment-'+i">
+            <td>{{item.devoteeId}}</td>
+            <td>{{item.month}}</td>
+            <td>{{item.year}}</td>
+            <td>{{item.amount}}</td>
+          </tr>
+
+        </ng-template>
+
+
+      </ng-container>
+
+
+    </tbody>
+  </table>
+  <div class="d-flex justify-content-center">
+    <pagination-controls (pageChange)="p = $event" class="float-right"></pagination-controls>
+  </div>
+</div>
